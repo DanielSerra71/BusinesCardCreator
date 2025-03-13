@@ -1,0 +1,50 @@
+{
+  "name": "business-card-pwa",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "generate-pwa-assets": "pwa-assets-generator",
+    "copy-files": "node scripts/copy-files.js",
+    "convert-logo": "node scripts/svg-to-png.js",
+    "generate-icons": "node scripts/generate-icons.js",
+    "setup": "npm run copy-files && npm run convert-logo && npm run generate-icons",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@types/qrcode": "^1.5.5",
+    "framer-motion": "^11.0.8",
+    "jspdf": "^2.5.1",
+    "qrcode": "^1.5.4",
+    "qrcode.react": "^3.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.56",
+    "@types/react-dom": "^18.2.19",
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
+    "@vite-pwa/assets-generator": "^0.2.4",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "gh-pages": "^6.3.0",
+    "sharp": "^0.33.5",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.4",
+    "vite-plugin-pwa": "^0.19.0"
+  },
+  "homepage": "https://[tu-usuario-github].github.io/business-card-creator"
+}
