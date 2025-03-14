@@ -19,12 +19,20 @@ const router = createBrowserRouter(
             <Route path="/preview" element={<CardPreviewScreen />} />
             <Route path="/preview/:id" element={<CardPreviewScreen />} />
             <Route path="/cards" element={<CardsListScreen />} />
+            <Route path="*" element={<HomeScreen />} />
         </>
-    )
+    ),
+    {
+        basename: '/'
+    }
 );
 
 const App: React.FC = () => {
-    return <RouterProvider router={router} />;
+    return (
+        <React.StrictMode>
+            <RouterProvider router={router} />
+        </React.StrictMode>
+    );
 };
 
 export default App; 

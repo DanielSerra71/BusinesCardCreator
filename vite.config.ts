@@ -4,7 +4,6 @@ import { VitePWA } from 'vite-plugin-pwa'
 import type { PluginOption } from 'vite'
 
 export default defineConfig({
-    base: '/business-card-creator/',
     plugins: ([
         react(),
         VitePWA({
@@ -12,7 +11,9 @@ export default defineConfig({
             injectRegister: 'auto',
             workbox: {
                 globPatterns: ['**/*.{js,css,html,ico,png,svg,json}'],
-                cleanupOutdatedCaches: true
+                cleanupOutdatedCaches: true,
+                navigateFallback: 'index.html',
+                navigateFallbackAllowlist: [/^(?!\/__).*/]
             },
             includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
             manifest: {
@@ -22,8 +23,7 @@ export default defineConfig({
                 theme_color: '#ffffff',
                 background_color: '#ffffff',
                 display: 'standalone',
-                start_url: '/business-card-creator/',
-                scope: '/business-card-creator/',
+                start_url: '/',
                 icons: [
                     {
                         src: 'icons/icon-72x72.png',
@@ -77,7 +77,15 @@ export default defineConfig({
     ] as PluginOption[]),
     build: {
         outDir: 'dist',
-        sourcemap: true
+        sourcemap: true,
+        rollupOptions: {
+            output: {
+                manualChunks: {
+                    vendor: ['react', 'react-dom', 'react-router-dom'],
+                    ui: ['framer-motion']
+                }
+            }
+        }
     },
     server: {
         port: 5173,
